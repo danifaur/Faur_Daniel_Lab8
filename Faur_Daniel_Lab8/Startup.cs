@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Faur_Daniel_Lab8.Data;
 
 namespace Faur_Daniel_Lab8
 {
@@ -24,6 +26,9 @@ namespace Faur_Daniel_Lab8
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddDbContext<Faur_Daniel_Lab8Context>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("Faur_Daniel_Lab8Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
